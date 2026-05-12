@@ -1,5 +1,4 @@
 import os
-from token import NAME
 from faker import Faker
 
 

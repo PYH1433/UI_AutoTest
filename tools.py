@@ -34,17 +34,6 @@ class Tools:
             cls.driver = None
 
 
-    def read_json(file_name):
-        """ 读取json文件 """
-        data = []
-        file_path = PATH + "/data/" + file_name
-        with open(file_path, "r", encoding="utf-8") as f:
-            tmp = json.load(f)
-            for i in tmp:
-                a = tuple(i.values())
-                data.append(a)
-            return data
-
 
 class GetLog:
         # 日志器
@@ -85,5 +74,13 @@ class GetLog:
 
 
 
-
-    
+def read_json(file_name):
+    """ 读取json文件 """
+    data = []
+    file_path = PATH + "/data/" + file_name
+    with open(file_path, "r", encoding="utf-8") as f:
+        tmp = json.load(f)
+        for i in tmp:
+            a = tuple(i.values())
+            data.append(a)
+        return data
