@@ -16,7 +16,7 @@ class BasePage(object):
     def fd_element(self,loc):
         """ 定位元素公共方法 """
         try: 
-            element = WebDriverWait(self.driver, self.default_timeout).until(EC.presence_of_element_located(loc))
+            element = WebDriverWait(self.driver, self.default_timeout).until(EC.visibility_of_element_located(loc))
             return element
         except Exception as e:
             GetLog.get_log().error(f"元素定位失败：定位信息：{loc},错误详情{e})")

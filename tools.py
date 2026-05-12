@@ -1,6 +1,7 @@
 import json
 import logging
 import time
+from logging import handlers
 from selenium import webdriver 
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.support import expected_conditions as EC
@@ -49,24 +50,38 @@ class GetLog:
         # 日志器
         __log = None
 
-        def get_log(cls):
-            if cls.__log is None:
-                # 创建日志器
-                cls.__log = logging.getLogger()
-                # 设置日志级别
-                cls.__log.setLevel(logging.INFO)
-                # 创建处理器
-                filename = PATH + "/log/" + "Web.log"
-                tf = logging.handles.TimedRotatingFileHandler(filename=filename, 
-                                                                when="midnight",
-                                                                interval=1,
-                                                                backupCount=3, 
-                                                                encoding="utf-8")
-                fmt = "%(asctime)s %(levelname)s [%(filename)s(%(funcName)s:%(lineno)d)] - %(message)s"
-                fm = logging.Formatter(fmt)
-                tf.setFormatter(fm)
-                cls.__log.addHandler(tf)
-            return cls.__log
+
+import logging
+import os
+from config import PATH  # 确保你有PATH
+
+class GetLog:
+    # 日志器
+    __log = None
+
+    @classmethod
+    def get_log(cls):
+        if cls.__log is None:
+            # 创建日志器
+            cls.__log = logging.getLogger()
+            # 设置日志级别
+            cls.__log.setLevel(logging.INFO)
+            
+            # 创建处理器  ↓↓↓ 这里修复！handles → handlers
+            filename = os.path.join(PATH, "log", "Web.log")
+            tf = logging.handlers.TimedRotatingFileHandler(
+                filename=filename, 
+                when="midnight",
+                interval=1,
+                backupCount=3, 
+                encoding="utf-8"
+            )
+            
+            fmt = "%(asctime)s %(levelname)s [%(filename)s(%(funcName)s:%(lineno)d)] - %(message)s"
+            fm = logging.Formatter(fmt)
+            tf.setFormatter(fm)
+            cls.__log.addHandler(tf)
+        return cls.__log
 
 
 

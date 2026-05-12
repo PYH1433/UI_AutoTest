@@ -19,11 +19,16 @@ class PageLogin(BasePage):
         self.username = (By.ID, "keywords")
         self.password = (By.ID, "password")
         self.login_button = (By.ID, "login-btn")
+        self.result_succsess = (By.CLASS_NAME, "a-link1")
+        
+        self.result_fail = (By.CSS_SELECTOR,"#err > span")
 
 
     def get_url(self):
         """ 访问登录页面 """
-        self.driver.get(BASE_URL + "/common/member/login")
+        self.driver.get(BASE_URL + "/common/member/login")  
+
+
 
     def login(self,username, password):
         """ 登录操作 """
@@ -37,6 +42,15 @@ class PageLogin(BasePage):
         # 点击登录
         self.base_click(self.login_button)
 
+    
+    def get_succsess_result(self):
+        """ 获取登录成功结果 """
+        return self.fd_element(self.result_succsess).text
+
+
+    def get_fail_result(self):
+        """ 获取登录失败结果 """
+        return self.fd_element(self.result_fail).text
 
 
 if __name__ == '__main__':
