@@ -2,6 +2,8 @@
 # 排除 __pycache__ 目录
 __pycache__/
 *.pyc
+.pytest_cache
+
 
 # 测试报告
 report/

@@ -6,7 +6,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from config import BASE_URL
-from tools import Tools
 from base.page_base import BasePage
 
 
@@ -53,7 +52,7 @@ class PageLogin(BasePage):
         return self.fd_element(self.result_fail).text
 
 
-if __name__ == '__main__':
-    p1 = PageLogin(Tools.get_driver())
-    p1.get_url()
-    p1.login("12115116391","123abc")
+# if __name__ == '__main__':
+#     p1 = PageLogin(Tools.get_driver())
+#     p1.get_url()
+#     p1.login("12115116391","123abc")
