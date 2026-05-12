@@ -22,8 +22,8 @@ class TestCreditApplication(object):
     def teardown_method(self):
         Tools.quit_driver()
 
-    @pytest.mark.parametrize("money,detail,code",read_json("credit_data.json"))
-    def test_credit_application(self,money,detail,code):
+    @pytest.mark.parametrize("money,detail,code,expected",read_json("credit_data.json"))
+    def test_credit_application(self,money,detail,code,expected):
         self.credit_app.swithch_role()
         self.credit_app.click_application()
         self.credit_app.credit_application(money,detail,code)
@@ -32,7 +32,7 @@ class TestCreditApplication(object):
         GetLog.get_log().info(f"额度申请结果：{result}")
 
         
-        assert money == result
+        assert expected == result
 
         # 截图
         self.credit_app.get_shot("credit_application.png")

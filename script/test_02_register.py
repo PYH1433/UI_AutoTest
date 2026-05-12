@@ -2,8 +2,9 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import pytest
 from page.page_register import PageRegister
-from tools import Tools,GetLog
+from tools import Tools,GetLog, read_json
 
 
 
@@ -17,15 +18,17 @@ class TestRegister(object):
     def teardown_method(self):
         Tools.quit_driver()
 
+    @pytest.mark.parametrize("phone,pwd,im_code,ph_code,expected",read_json("register_data.json"))
+    def test_register_succsess(self,phone,pwd,im_code,ph_code,expected):
 
-    def test_register_succsess(self):
+        self.reg.register(phone,pwd,im_code,ph_code)
 
-        self.reg.register("12115130891","123abc",8888,666666)
+        
 
         result = self.reg.get_success_result()
         GetLog.get_log().info(f"注册结果为：{result}")
 
-        assert "注册成功" in result
+        assert expected in result
 
 
     def test_register_fail(self):

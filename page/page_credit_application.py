@@ -22,7 +22,7 @@ class PageCreditApplication(BasePage):
         self.code = (By.ID, "verifycode")
         self.btn = (By.CSS_SELECTOR, ".btn-submit.btn-md")
         # 成功
-        self.success_result = (By.XPATH, '//*[@id="amount_list"]/tr[1]/td[3]')
+        self.success_result = (By.XPATH, '//*[@id="amount_list"]/tr[1]/td[6]')
 
 
     def swithch_role(self):

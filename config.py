@@ -7,6 +7,7 @@ PATH = os.path.dirname(__file__)
 
 # 测试地址
 BASE_URL = "http://121.43.169.97:8081"
+BAKE_URL  = "http://121.43.169.97:8082"
 
 # 测试数据
 fk = Faker(locale='zh_CN')
