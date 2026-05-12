@@ -35,7 +35,7 @@ class BasePage(object):
         self.fd_element(loc).click()
 
 
-    def get_host(self, file_name):
+    def get_shot(self, file_name):
         """ 截图 """
         file_path = os.path.join(PATH, 'img',  file_name)
         self.driver.get_screenshot_as_file(file_path)

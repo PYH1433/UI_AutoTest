@@ -52,7 +52,3 @@ class PageLogin(BasePage):
         return self.fd_element(self.result_fail).text
 
 
-# if __name__ == '__main__':
-#     p1 = PageLogin(Tools.get_driver())
-#     p1.get_url()
-#     p1.login("12115116391","123abc")
