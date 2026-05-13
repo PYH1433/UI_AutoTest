@@ -1,1 +1,0 @@
-[32mINFO    [0m root:test_04_credit_application.py:32 额度申请结果：待审核
