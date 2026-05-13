@@ -33,7 +33,7 @@ class TestRegister(object):
 
     def test_register_fail(self):
 
-        self.reg.register("12115136391","123abc",8888,666666)
+        self.reg.register("12115836391","123abc",8888,666666)
 
         result = self.reg.get_fail_result()
         GetLog.get_log().info(f"注册结果为：{result}")

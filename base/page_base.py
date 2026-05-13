@@ -1,8 +1,10 @@
+
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config import PATH
 import os
 from tools import GetLog
+from selenium.webdriver.support.select import Select
 
 class BasePage(object):
     """ 定位元素封装 """
@@ -22,6 +24,15 @@ class BasePage(object):
             GetLog.get_log().error(f"元素定位失败：定位信息：{loc},错误详情{e})")
             raise
 
+    def fd_element_p(self,loc):
+        """ 定位元素公共方法 """
+        try: 
+            element = WebDriverWait(self.driver, self.default_timeout).until(EC.presence_of_element_located(loc))
+            return element
+        except Exception as e:
+            GetLog.get_log().error(f"元素定位失败：定位信息：{loc},错误详情{e})")
+            raise
+
 
     def base_input(self, loc, text):
         """ 输入操作 """
@@ -33,6 +44,10 @@ class BasePage(object):
     def base_click(self, loc):
         """ 点击操作 """
         self.fd_element(loc).click()
+
+    def base_click_p(self, loc):
+        """ 点击操作 """
+        self.fd_element_p(loc).click()
 
 
     def get_shot(self, file_name):
@@ -64,3 +79,6 @@ class BasePage(object):
     def base_default_frame(self):
         """ 切回最外层默认frame """
         self.driver.switch_to.default_content()
+
+    def base_select(self,loc,text):
+        Select(self.fd_element(loc)).select_by_visible_text(text)

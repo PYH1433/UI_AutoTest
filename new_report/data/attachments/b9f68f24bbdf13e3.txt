@@ -1,0 +1,1 @@
+[32mINFO    [0m root:test_02_register.py:39 注册结果为：注册抢88现金

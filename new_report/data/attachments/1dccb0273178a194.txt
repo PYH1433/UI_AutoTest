@@ -1,0 +1,1 @@
+[32mINFO    [0m root:test_02_register.py:29 注册结果为：恭喜您，注册成功！
