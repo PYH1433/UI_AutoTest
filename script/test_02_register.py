@@ -10,32 +10,24 @@ from tools import Tools,GetLog, read_json
 
 class TestRegister(object):
     
-    def setup_method(self):
-        driver = Tools.get_driver()
-        self.reg = PageRegister(driver)
-        self.reg.get_url()    
-
-    def teardown_method(self):
-        Tools.quit_driver()
-
     @pytest.mark.parametrize("phone,pwd,im_code,ph_code,expected",read_json("register_data.json"))
-    def test_register_succsess(self,phone,pwd,im_code,ph_code,expected):
+    def test_register_succsess(self,pg_register,phone,pwd,im_code,ph_code,expected):
 
-        self.reg.register(phone,pwd,im_code,ph_code)
+        pg_register.register(phone,pwd,im_code,ph_code)
 
         
 
-        result = self.reg.get_success_result()
+        result = pg_register.get_success_result()
         GetLog.get_log().info(f"注册结果为：{result}")
 
         assert expected in result
 
 
-    def test_register_fail(self):
+    def test_register_fail(self,pg_register):
 
         self.reg.register("12115836391","123abc",8888,666666)
 
-        result = self.reg.get_fail_result()
+        result = pg_register.get_fail_result()
         GetLog.get_log().info(f"注册结果为：{result}")
 
         assert "注册抢88现金" == result

@@ -7,7 +7,7 @@ __pycache__/
 
 # 测试报告
 report/
-
+new_report/
 # 日志
 log/
 *.log
